@@ -13,13 +13,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
-import { Wallet, TrendingUp, TrendingDown, DollarSign } from 'lucide-react'
+import { Wallet, TrendingUp, TrendingDown, DollarSign, CreditCard } from 'lucide-react'
 
 const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899']
 
 export default function DashboardPage() {
   const [summary, setSummary] = useState(null)
   const [investments, setInvestments] = useState([])
+  const [subscriptions, setSubscriptions] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -30,15 +31,17 @@ export default function DashboardPage() {
     try {
       setLoading(true)
       const now = new Date()
-      const [summaryData, investmentsData] = await Promise.all([
+      const [summaryData, investmentsData, subscriptionsData] = await Promise.all([
         api.getTransactionsSummary({
           month: now.getMonth() + 1,
           year: now.getFullYear(),
         }),
         api.getInvestments(),
+        api.getSubscriptions(),
       ])
       setSummary(summaryData)
       setInvestments(investmentsData)
+      setSubscriptions(subscriptionsData)
     } catch (error) {
       console.error('Failed to load dashboard:', error)
     } finally {
@@ -56,6 +59,27 @@ export default function DashboardPage() {
 
   const totalInvestments = investments.reduce((sum, inv) => sum + (inv.estimatedValue || 0), 0)
   const patrimony = (summary?.balance || 0) + totalInvestments
+
+  const subscriptionCategoryTotals = subscriptions.reduce((acc, sub) => {
+    const key = sub.category || 'SEM_CATEGORIA'
+    acc[key] = (acc[key] || 0) + (sub.amount || 0)
+    return acc
+  }, {})
+
+  const subscriptionCategoryLabels = {
+    LAZER: 'Lazer',
+    STREAMING: 'Streaming',
+    IA: 'IA',
+    TRABALHO: 'Trabalho',
+    SEM_CATEGORIA: 'Sem categoria',
+  }
+
+  const subscriptionCategoryData = Object.entries(subscriptionCategoryTotals).map(([name, value]) => ({
+    name: subscriptionCategoryLabels[name] || name,
+    value,
+  }))
+
+  const subscriptionTotal = subscriptions.reduce((sum, sub) => sum + (sub.amount || 0), 0)
 
   const categoryData = summary?.expensesByCategory
     ? Object.entries(summary.expensesByCategory).map(([name, value]) => ({
@@ -142,6 +166,34 @@ export default function DashboardPage() {
           </ResponsiveContainer>
         </Card>
       </div>
+
+      <Card title="Assinaturas por Categoria">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div className="text-sm text-gray-600">
+            <span className="font-semibold text-gray-900">{subscriptions.length}</span> assinaturas ativas
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <CreditCard className="text-primary-600" size={18} />
+            <span>
+              Total mensal: <span className="font-semibold text-gray-900">R$ {subscriptionTotal.toFixed(2)}</span>
+            </span>
+          </div>
+        </div>
+
+        {subscriptionCategoryData.length > 0 ? (
+          <ResponsiveContainer width="100%" height={280}>
+            <BarChart data={subscriptionCategoryData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip formatter={(value) => `R$ ${value.toFixed(2)}`} />
+              <Bar dataKey="value" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <p className="text-gray-500 text-center py-12">Nenhuma assinatura cadastrada</p>
+        )}
+      </Card>
 
       {investments.length > 0 && (
         <Card title="Investimentos">

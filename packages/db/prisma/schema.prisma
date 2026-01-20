@@ -40,6 +40,7 @@ model Subscription {
   email           String?
   passwordEncrypted String // Senha criptografada com AES-256-GCM
   photoUrl        String?
+  category        String?  // Categoria de assinatura
   amount          Float
   recurrence      String   // "MONTHLY", "QUARTERLY", "SEMIANNUAL", "ANNUAL"
   paymentDay      Int      // 1-31

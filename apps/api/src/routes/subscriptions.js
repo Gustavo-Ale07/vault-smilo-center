@@ -14,6 +14,14 @@ const subscriptionSchema = z.object({
     (value) => (value === '' ? null : value),
     z.string().email('Invalid email').optional().nullable()
   ),
+  category: z.preprocess(
+    (value) => {
+      if (value === '') return null;
+      if (typeof value === 'string') return value.trim().toUpperCase();
+      return value;
+    },
+    z.enum(['LAZER', 'STREAMING', 'IA', 'TRABALHO']).optional().nullable()
+  ),
   password: z.string().min(1, 'Password is required'),
   photoUrl: z.preprocess(
     (value) => (value === '' ? null : value),

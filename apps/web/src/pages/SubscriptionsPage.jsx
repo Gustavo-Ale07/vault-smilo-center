@@ -5,6 +5,19 @@ import Modal from '../components/Modal'
 import api from '../services/api'
 import { Plus, Edit, Trash2, Eye, EyeOff, Loader2 } from 'lucide-react'
 
+const SUBSCRIPTION_CATEGORIES = [
+  { value: 'LAZER', label: 'Lazer' },
+  { value: 'STREAMING', label: 'Streaming' },
+  { value: 'IA', label: 'IA' },
+  { value: 'TRABALHO', label: 'Trabalho' },
+]
+
+function getCategoryLabel(value) {
+  if (!value) return '-'
+  const match = SUBSCRIPTION_CATEGORIES.find((item) => item.value === value)
+  return match ? match.label : value
+}
+
 export default function SubscriptionsPage() {
   const [subscriptions, setSubscriptions] = useState([])
   const [loading, setLoading] = useState(true)
@@ -58,6 +71,11 @@ export default function SubscriptionsPage() {
 
   const columns = [
     { key: 'name', label: 'Nome' },
+    {
+      key: 'category',
+      label: 'Categoria',
+      render: (row) => getCategoryLabel(row.category),
+    },
     { key: 'email', label: 'Email' },
     {
       key: 'password',
@@ -159,6 +177,7 @@ function SubscriptionModal({ isOpen, onClose, editingId, onSuccess }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    category: 'STREAMING',
     password: '',
     photoUrl: '',
     amount: '',
@@ -182,6 +201,7 @@ function SubscriptionModal({ isOpen, onClose, editingId, onSuccess }) {
       setFormData({
         name: data.name,
         email: data.email || '',
+        category: data.category || 'STREAMING',
         password,
         photoUrl: data.photoUrl || '',
         amount: data.amount,
@@ -198,6 +218,7 @@ function SubscriptionModal({ isOpen, onClose, editingId, onSuccess }) {
     setFormData({
       name: '',
       email: '',
+      category: 'STREAMING',
       password: '',
       photoUrl: '',
       amount: '',
@@ -214,6 +235,7 @@ function SubscriptionModal({ isOpen, onClose, editingId, onSuccess }) {
         ...formData,
         amount: parseFloat(formData.amount),
         paymentDay: parseInt(formData.paymentDay, 10),
+        category: formData.category || null,
       }
 
       if (editingId) {
@@ -249,6 +271,21 @@ function SubscriptionModal({ isOpen, onClose, editingId, onSuccess }) {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
+        </div>
+
+        <div>
+          <label className="label">Categoria</label>
+          <select
+            className="input"
+            value={formData.category}
+            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+          >
+            {SUBSCRIPTION_CATEGORIES.map((category) => (
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
