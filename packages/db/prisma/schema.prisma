@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// USUÁRIO
+// ==========================================
+model User {
+  id        String   @id @default(uuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions   Subscription[]
+  vaultAccounts   VaultAccount[]
+  transactions    Transaction[]
+  investments     Investment[]
+  categories      Category[]
+
+  @@index([clerkId])
+}
+
+// ==========================================
+// ASSINATURAS
+// ==========================================
+model Subscription {
+  id              String   @id @default(uuid())
+  userId          String
+  name            String
+  email           String?
+  passwordEncrypted String // Senha criptografada com AES-256-GCM
+  photoUrl        String?
+  amount          Float
+  recurrence      String   // "MONTHLY", "QUARTERLY", "SEMIANNUAL", "ANNUAL"
+  paymentDay      Int      // 1-31
+  nextPaymentDate DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ==========================================
+// COFRE DE CONTAS
+// ==========================================
+model VaultAccount {
+  id                String   @id @default(uuid())
+  userId            String
+  name              String
+  email             String?
+  passwordEncrypted String   // Senha criptografada com AES-256-GCM
+  platformPhotoUrl  String?
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ==========================================
+// CATEGORIAS
+// ==========================================
+model Category {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  type      String   // "EXPENSE", "INCOME", "INVESTMENT"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+// ==========================================
+// TRANSAÇÕES FINANCEIRAS
+// ==========================================
+model Transaction {
+  id         String   @id @default(uuid())
+  userId     String
+  categoryId String?
+  type       String   // "EXPENSE", "INCOME"
+  title      String
+  amount     Float
+  date       DateTime
+  isFixed    Boolean  @default(false) // Despesa/Receita fixa
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([categoryId])
+  @@index([date])
+}
+
+// ==========================================
+// INVESTIMENTOS
+// ==========================================
+model Investment {
+  id                String   @id @default(uuid())
+  userId            String
+  name              String
+  type              String   // "CDI", "FIXED", "STOCKS", "CRYPTO", "OTHER"
+  principal         Float
+  monthlyContribution Float    @default(0)
+  annualRateBps     Int      // Taxa anual em basis points (ex: 1200 = 12%)
+  startDate         DateTime
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}

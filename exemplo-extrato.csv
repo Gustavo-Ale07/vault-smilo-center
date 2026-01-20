@@ -1,0 +1,15 @@
+date,title,amount,type,category
+2024-01-05,Salário,8500.00,INCOME,Trabalho
+2024-01-06,Supermercado Extra,450.80,EXPENSE,Alimentação
+2024-01-07,Conta de Luz,220.00,EXPENSE,Moradia
+2024-01-08,Uber,35.50,EXPENSE,Transporte
+2024-01-10,Freelance Web,1200.00,INCOME,Trabalho
+2024-01-12,Netflix,55.90,EXPENSE,Entretenimento
+2024-01-12,Spotify,21.90,EXPENSE,Entretenimento
+2024-01-15,Restaurante,180.00,EXPENSE,Alimentação
+2024-01-18,Farmácia,85.40,EXPENSE,Saúde
+2024-01-20,Academia,120.00,EXPENSE,Saúde
+2024-01-22,Gasolina,250.00,EXPENSE,Transporte
+2024-01-25,Mercado Livre compra,340.00,EXPENSE,Compras
+2024-01-28,Dividendos,150.00,INCOME,Investimentos
+2024-01-30,Aluguel,1800.00,EXPENSE,Moradia

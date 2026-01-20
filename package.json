@@ -1,0 +1,29 @@
+{
+  "name": "vault-smilo-center",
+  "version": "1.0.0",
+  "description": "Sistema completo de gestao pessoal - Assinaturas, Cofre, Financas e Investimentos",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --stream run dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm --recursive run build",
+    "build:web": "pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "start": "pnpm --filter api start",
+    "start:api": "pnpm --filter api start",
+    "start:web": "pnpm --filter web preview",
+    "db:generate": "pnpm --filter db generate",
+    "db:migrate": "pnpm --filter db migrate",
+    "db:migrate:deploy": "pnpm --filter db migrate:deploy",
+    "db:push": "pnpm --filter db push",
+    "db:studio": "pnpm --filter db studio"
+  },
+  "keywords": ["monorepo", "pnpm", "vault", "finance", "subscriptions"],
+  "author": "Smilo Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
