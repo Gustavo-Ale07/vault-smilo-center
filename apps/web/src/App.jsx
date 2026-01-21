@@ -67,7 +67,23 @@ function App() {
           }
         />
         <Route
+          path="/sign-in/sso-callback"
+          element={
+            <PublicRoute>
+              <SignInPage />
+            </PublicRoute>
+          }
+        />
+        <Route
           path="/sign-up"
+          element={
+            <PublicRoute>
+              <SignUpPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/sign-up/sso-callback"
           element={
             <PublicRoute>
               <SignUpPage />
