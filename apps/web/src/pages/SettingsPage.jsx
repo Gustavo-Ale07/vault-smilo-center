@@ -10,7 +10,9 @@ export default function SettingsPage() {
       </div>
 
       <Card>
-        <UserProfile />
+        <div className="overflow-x-auto">
+          <UserProfile />
+        </div>
       </Card>
 
       <Card title="Sobre o Vault Smilo">
