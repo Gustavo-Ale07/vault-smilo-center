@@ -15,9 +15,19 @@ export default function LandingPage() {
               <p className="text-xs text-slate-500">Gestão pessoal e cofres seguros</p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <Link to="/sign-in" className="btn-secondary w-full sm:w-auto text-center">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <Link
+              to="/sign-in"
+              className="btn-secondary w-full sm:w-auto text-center hidden sm:inline-flex"
+            >
               Entrar
+            </Link>
+            <Link
+              to="/sign-in"
+              className="btn-secondary w-11 h-11 sm:hidden inline-flex items-center justify-center rounded-full"
+              aria-label="Entrar"
+            >
+              <ArrowRight size={18} />
             </Link>
             <Link to="/sign-up" className="btn-primary w-full sm:w-auto text-center">
               Começar grátis

@@ -9,7 +9,7 @@ export default function SignUpPage() {
 
       <div className="relative min-h-screen flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-5xl grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 hidden lg:block">
             <div>
               <p className="text-xs uppercase tracking-widest text-primary-700 font-semibold">
                 Smilo Vault
@@ -31,7 +31,7 @@ export default function SignUpPage() {
             </div>
           </div>
 
-          <div className="bg-white/90 border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-8">
+          <div className="bg-white/90 border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-8 w-full max-w-md mx-auto">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-slate-900">Crie sua conta</h2>
               <p className="text-sm text-slate-500 mt-2">Comece grátis e evolua depois.</p>
