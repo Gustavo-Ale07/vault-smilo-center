@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, CreditCard, Lock, Wallet, TrendingUp, Upload, Settings } from 'lucide-react'
+import { LayoutDashboard, CreditCard, Lock, Wallet, TrendingUp, Upload, Settings, X } from 'lucide-react'
 
 const navItems = [
   { to: '/app', icon: LayoutDashboard, label: 'Dashboard', end: true },
@@ -11,12 +11,26 @@ const navItems = [
   { to: '/app/settings', icon: Settings, label: 'Configuracoes' },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-primary-600">Smilo Vault</h1>
-        <p className="text-sm text-gray-500 mt-1">Gestao Pessoal</p>
+    <aside
+      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 flex flex-col transform transition-transform duration-200 lg:static lg:translate-x-0 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}
+    >
+      <div className="p-6 border-b border-gray-200 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-primary-600">Smilo Vault</h1>
+          <p className="text-sm text-gray-500 mt-1">Gestao Pessoal</p>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+          aria-label="Fechar menu"
+        >
+          <X size={18} />
+        </button>
       </div>
 
       <nav className="flex-1 p-4 space-y-1">

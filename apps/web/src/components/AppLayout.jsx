@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import Sidebar from './Sidebar'
@@ -7,6 +7,7 @@ import api from '../services/api'
 
 export default function AppLayout() {
   const { isSignedIn } = useAuth()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   useEffect(() => {
     if (!isSignedIn) return
@@ -15,10 +16,18 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      <Sidebar />
+      {sidebarOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Fechar menu"
+        />
+      )}
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col">
-        <Topbar />
-        <main className="flex-1 p-6 overflow-y-auto">
+        <Topbar onMenuClick={() => setSidebarOpen(true)} />
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto">
           <Outlet />
         </main>
       </div>
