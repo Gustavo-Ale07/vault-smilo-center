@@ -42,7 +42,7 @@ export default function Table({ columns, data, actions }) {
                 </th>
               ))}
               {actions && (
-                <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Acoes</th>
+                <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Ações</th>
               )}
             </tr>
           </thead>

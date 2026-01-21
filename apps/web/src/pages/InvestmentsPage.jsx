@@ -46,7 +46,7 @@ export default function InvestmentsPage() {
       const data = await api.getInvestmentProjection(id)
       setProjectionData(data)
     } catch (error) {
-      alert('Erro ao carregar projecao')
+      alert('Erro ao carregar projeção')
     } finally {
       setProjectionLoading(false)
     }
@@ -79,7 +79,7 @@ export default function InvestmentsPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold">Investimentos</h1>
-          <p className="text-gray-600 mt-1">Acompanhe seus investimentos e projecoes</p>
+          <p className="text-gray-600 mt-1">Acompanhe seus investimentos e projeções</p>
         </div>
         <button
           onClick={() => {
@@ -107,7 +107,7 @@ export default function InvestmentsPage() {
                 <button
                   onClick={() => showProjection(row.id)}
                   className="p-2 hover:bg-primary-50 text-primary-600 rounded-lg"
-                  title="Ver Projecao"
+                  title="Ver Projeção"
                   disabled={projectionLoading}
                 >
                   {projectionLoading ? <Loader2 size={16} className="animate-spin" /> : <TrendingUp size={16} />}
@@ -134,7 +134,7 @@ export default function InvestmentsPage() {
       </Card>
 
       {projectionData && (
-        <Card title={`Projecao: ${projectionData.investment.name}`}>
+        <Card title={`Projeção: ${projectionData.investment.name}`}>
           <div className="mb-4">
             <p className="text-sm text-gray-600 mb-2">
               <strong>Formula:</strong> {projectionData.formula}
@@ -299,7 +299,7 @@ function InvestmentModal({ isOpen, onClose, editingId, onSuccess }) {
         </div>
 
         <div>
-          <label className="label">Data de Inicio</label>
+          <label className="label">Data de Início</label>
           <input
             type="date"
             className="input"

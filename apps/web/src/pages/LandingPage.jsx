@@ -12,15 +12,15 @@ export default function LandingPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-primary-700">Smilo Vault</h1>
-              <p className="text-xs text-slate-500">Gestao pessoal e cofres seguros</p>
+              <p className="text-xs text-slate-500">Gestão pessoal e cofres seguros</p>
             </div>
           </div>
-          <div className="flex gap-3">
-            <Link to="/sign-in" className="btn-secondary">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <Link to="/sign-in" className="btn-secondary w-full sm:w-auto text-center">
               Entrar
             </Link>
-            <Link to="/sign-up" className="btn-primary">
-              Comecar gratis
+            <Link to="/sign-up" className="btn-primary w-full sm:w-auto text-center">
+              Começar grátis
             </Link>
           </div>
         </div>
@@ -38,17 +38,17 @@ export default function LandingPage() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
               style={{ fontFamily: "'Fraunces', serif" }}
             >
-              Organize assinaturas, senhas e financas em um painel unico.
+              Organize assinaturas, senhas e finanças em um painel único.
             </h2>
             <p className="text-lg text-slate-600 max-w-xl">
-              Acompanhe gastos recorrentes, veja a evolucao do seu patrimonio e guarde credenciais
+              Acompanhe gastos recorrentes, veja a evolução do seu patrimônio e guarde credenciais
               com criptografia AES-256-GCM.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/sign-up" className="btn-primary text-base px-6 py-3">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/sign-up" className="btn-primary text-base px-6 py-3 w-full sm:w-auto text-center">
                 Criar conta
               </Link>
-              <Link to="/sign-in" className="btn-secondary text-base px-6 py-3 flex items-center gap-2">
+              <Link to="/sign-in" className="btn-secondary text-base px-6 py-3 flex items-center justify-center gap-2 w-full sm:w-auto">
                 Ver painel <ArrowRight size={16} />
               </Link>
             </div>
@@ -73,7 +73,7 @@ export default function LandingPage() {
               <Insight label="Economia estimada" value="R$ 1.240,00" />
             </div>
             <div className="mt-6 p-4 rounded-2xl bg-slate-900 text-white">
-              <p className="text-xs uppercase tracking-widest text-slate-400">Proxima renovacao</p>
+              <p className="text-xs uppercase tracking-widest text-slate-400">Próxima renovação</p>
               <p className="text-lg font-semibold">Netflix - 10/02</p>
             </div>
           </div>
@@ -84,14 +84,14 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
             <div>
-              <h3 className="text-3xl font-bold">Tudo que voce precisa em um so lugar</h3>
+              <h3 className="text-3xl font-bold">Tudo que você precisa em um só lugar</h3>
               <p className="text-slate-600 mt-2 max-w-2xl">
                 Um fluxo simples para manter seu dinheiro e suas senhas sob controle, sem planilhas
                 espalhadas.
               </p>
             </div>
             <Link to="/sign-up" className="btn-primary">
-              Comecar agora
+              Começar agora
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -112,8 +112,8 @@ export default function LandingPage() {
             />
             <FeatureCard
               icon={<Zap className="text-primary-600" size={28} />}
-              title="Financas"
-              description="Dashboard rapido com comparativos mensais."
+              title="Finanças"
+              description="Dashboard rápido com comparativos mensais."
             />
           </div>
         </div>
@@ -124,19 +124,19 @@ export default function LandingPage() {
           <div className="space-y-4">
             <h3 className="text-3xl font-bold">Por que escolher o Smilo Vault?</h3>
             <p className="text-slate-600">
-              Um MVP enxuto para voce construir disciplina financeira sem friccao.
+              Um MVP enxuto para você construir disciplina financeira sem fricção.
             </p>
             <div className="space-y-3">
-              <Strength text="Criptografia de ponta sem exposicao de senha." />
+              <Strength text="Criptografia de ponta sem exposição de senha." />
               <Strength text="Interface responsiva e pronta para VPS." />
-              <Strength text="Importacao de extratos e categorias sugeridas." />
-              <Strength text="Painel unico com indicadores principais." />
+              <Strength text="Importação de extratos e categorias sugeridas." />
+              <Strength text="Painel único com indicadores principais." />
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-            <StatCard label="Tempo economizado" value="8h/mes" />
+            <StatCard label="Tempo economizado" value="8h/mês" />
             <StatCard label="Assinaturas mapeadas" value="+90%" />
-            <StatCard label="Seguranca ativa" value="AES-256" />
+            <StatCard label="Segurança ativa" value="AES-256" />
             <StatCard label="Dashboards" value="4 modos" />
           </div>
         </div>
@@ -147,9 +147,9 @@ export default function LandingPage() {
           <h3 className="text-4xl font-bold" style={{ fontFamily: "'Fraunces', serif" }}>
             Pronto para organizar sua vida financeira?
           </h3>
-          <p className="text-lg text-slate-300">
-            Cadastre-se gratuitamente e comece a usar hoje mesmo.
-          </p>
+            <p className="text-lg text-slate-300">
+              Cadastre-se gratuitamente e comece a usar hoje mesmo.
+            </p>
           <Link
             to="/sign-up"
             className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-3 rounded-full font-semibold hover:bg-slate-100 transition-colors"

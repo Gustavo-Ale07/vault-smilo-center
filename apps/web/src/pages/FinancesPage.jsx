@@ -37,12 +37,12 @@ export default function FinancesPage() {
   }
 
   async function handleDelete(id) {
-    if (!confirm('Deseja remover esta transacao?')) return
+    if (!confirm('Deseja remover esta transação?')) return
     try {
       await api.deleteTransaction(id)
       loadData()
     } catch (error) {
-      alert('Erro ao remover transacao')
+      alert('Erro ao remover transação')
     }
   }
 
@@ -52,7 +52,7 @@ export default function FinancesPage() {
       label: 'Data',
       render: (row) => new Date(row.date).toLocaleDateString('pt-BR'),
     },
-    { key: 'title', label: 'Titulo' },
+    { key: 'title', label: 'Título' },
     {
       key: 'type',
       label: 'Tipo',
@@ -83,7 +83,7 @@ export default function FinancesPage() {
     {
       key: 'isFixed',
       label: 'Fixa',
-      render: (row) => (row.isFixed ? 'Sim' : 'Nao'),
+      render: (row) => (row.isFixed ? 'Sim' : 'Não'),
     },
   ]
 
@@ -91,8 +91,8 @@ export default function FinancesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Financas</h1>
-          <p className="text-gray-600 mt-1">Gerencie suas transacoes financeiras</p>
+          <h1 className="text-3xl font-bold">Finanças</h1>
+          <p className="text-gray-600 mt-1">Gerencie suas transações financeiras</p>
         </div>
         <button
           onClick={() => {
@@ -102,14 +102,14 @@ export default function FinancesPage() {
           className="btn-primary flex items-center gap-2"
         >
           <Plus size={20} />
-          Nova Transacao
+          Nova Transação
         </button>
       </div>
 
       <Card>
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div>
-            <label className="label">Mes</label>
+            <label className="label">Mês</label>
             <select
               className="input"
               value={filters.month}
@@ -213,7 +213,7 @@ function TransactionModal({ isOpen, onClose, editingId, categories, onSuccess })
         })
       }
     } catch (error) {
-      alert('Erro ao carregar transacao')
+      alert('Erro ao carregar transação')
     }
   }
 
@@ -245,12 +245,12 @@ function TransactionModal({ isOpen, onClose, editingId, categories, onSuccess })
       }
       onSuccess()
     } catch (error) {
-      alert('Erro ao salvar transacao')
+      alert('Erro ao salvar transação')
     }
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={editingId ? 'Editar Transacao' : 'Nova Transacao'}>
+    <Modal isOpen={isOpen} onClose={onClose} title={editingId ? 'Editar Transação' : 'Nova Transação'}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="label">Tipo</label>
@@ -265,7 +265,7 @@ function TransactionModal({ isOpen, onClose, editingId, categories, onSuccess })
         </div>
 
         <div>
-          <label className="label">Titulo</label>
+          <label className="label">Título</label>
           <input
             type="text"
             className="input"

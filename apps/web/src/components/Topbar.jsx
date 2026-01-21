@@ -18,9 +18,9 @@ export default function Topbar({ onMenuClick }) {
           </button>
           <div>
             <h2 className="text-xl font-semibold text-gray-800">
-              Ola, {user?.firstName || 'Usuario'}!
+              Olá, {user?.firstName || 'Usuário'}!
             </h2>
-            <p className="text-sm text-gray-500">Bem-vindo ao seu painel de gestao pessoal</p>
+            <p className="text-sm text-gray-500">Bem-vindo ao seu painel de gestão pessoal</p>
           </div>
         </div>
 

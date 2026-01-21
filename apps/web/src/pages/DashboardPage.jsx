@@ -92,7 +92,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-1">Visao geral das suas financas</p>
+        <p className="text-gray-600 mt-1">Visão geral das suas finanças</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -109,13 +109,13 @@ export default function DashboardPage() {
           color="red"
         />
         <StatCard
-          title="Saldo do Mes"
+          title="Saldo do Mês"
           value={summary?.balance || 0}
           icon={<Wallet className="text-blue-600" />}
           color="blue"
         />
         <StatCard
-          title="Patrimonio Estimado"
+          title="Patrimônio Estimado"
           value={patrimony}
           icon={<DollarSign className="text-purple-600" />}
           color="purple"
@@ -145,16 +145,16 @@ export default function DashboardPage() {
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <p className="text-gray-500 text-center py-12">Nenhuma despesa categorizada este mes</p>
+            <p className="text-gray-500 text-center py-12">Nenhuma despesa categorizada este mês</p>
           )}
         </Card>
 
-        <Card title="Despesas: Fixas vs Variaveis">
+        <Card title="Despesas: Fixas vs Variáveis">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={[
                 { name: 'Fixas', value: summary?.fixedExpenses || 0 },
-                { name: 'Variaveis', value: summary?.variableExpenses || 0 },
+                { name: 'Variáveis', value: summary?.variableExpenses || 0 },
               ]}
             >
               <CartesianGrid strokeDasharray="3 3" />

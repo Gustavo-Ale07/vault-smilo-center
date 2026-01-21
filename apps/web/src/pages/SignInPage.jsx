@@ -18,7 +18,7 @@ export default function SignInPage() {
                 className="text-4xl sm:text-5xl font-bold text-slate-900 mt-3"
                 style={{ fontFamily: "'Fraunces', serif" }}
               >
-                Entre para cuidar do seu dinheiro com seguranca.
+                Entre para cuidar do seu dinheiro com segurança.
               </h1>
             </div>
             <p className="text-slate-600 text-lg">

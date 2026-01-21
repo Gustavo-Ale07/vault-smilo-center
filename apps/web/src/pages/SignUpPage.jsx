@@ -34,7 +34,7 @@ export default function SignUpPage() {
           <div className="bg-white/90 border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-8">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-slate-900">Crie sua conta</h2>
-              <p className="text-sm text-slate-500 mt-2">Comece gratis e evolua depois.</p>
+              <p className="text-sm text-slate-500 mt-2">Comece grátis e evolua depois.</p>
             </div>
             <SignUp routing="path" path="/sign-up" signInUrl="/sign-in" redirectUrl="/app" />
           </div>
