@@ -1,4 +1,4 @@
-const { clerkClient } = require('@clerk/clerk-sdk-node');
+﻿const { clerkClient } = require('@clerk/clerk-sdk-node');
 const { prisma } = require('db');
 
 const DEFAULT_CATEGORIES = [
@@ -57,21 +57,54 @@ async function requireUser(req, res, next) {
 
     const clerkUser = await clerkClient.users.getUser(clerkId);
     const email = getPrimaryEmail(clerkUser) || `user_${clerkId}@clerk.local`;
+    const normalizedEmail = email.toLowerCase();
     const name = [clerkUser.firstName, clerkUser.lastName]
       .filter(Boolean)
       .join(' ') || null;
 
+    // First, try to find by clerkId.
     let user = await prisma.user.findUnique({ where: { clerkId } });
-
     if (!user) {
-      user = await prisma.user.create({
-        data: { clerkId, email, name },
+      // If not found by clerkId, try by email (case-insensitive).
+      const existingUserByEmail = await prisma.user.findFirst({
+        where: { email: { equals: normalizedEmail, mode: 'insensitive' } },
       });
-    } else if (user.email !== email || user.name !== name) {
-      user = await prisma.user.update({
-        where: { clerkId },
-        data: { email, name },
-      });
+      if (existingUserByEmail) {
+        // Email exists with another clerkId. Attach this clerkId to it.
+        user = await prisma.user.update({
+          where: { id: existingUserByEmail.id },
+          data: { clerkId, email: normalizedEmail, name },
+        });
+      } else {
+        // No user exists, create a new one.
+        user = await prisma.user.create({
+          data: { clerkId, email: normalizedEmail, name },
+        });
+      }
+    } else if (user.email !== normalizedEmail || user.name !== name) {
+      // User exists by clerkId, but email or name changed.
+      try {
+        user = await prisma.user.update({
+          where: { clerkId },
+          data: { email: normalizedEmail, name },
+        });
+      } catch (updateError) {
+        if (updateError?.code === 'P2002') {
+          const existingUserByEmail = await prisma.user.findFirst({
+            where: { email: { equals: normalizedEmail, mode: 'insensitive' } },
+          });
+          if (existingUserByEmail) {
+            user = await prisma.user.update({
+              where: { id: existingUserByEmail.id },
+              data: { clerkId, email: normalizedEmail, name },
+            });
+          } else {
+            throw updateError;
+          }
+        } else {
+          throw updateError;
+        }
+      }
     }
 
     await ensureDefaultCategories(user.id);
@@ -83,3 +116,4 @@ async function requireUser(req, res, next) {
 }
 
 module.exports = { requireUser };
+
