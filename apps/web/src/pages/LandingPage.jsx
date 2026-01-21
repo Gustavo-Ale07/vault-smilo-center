@@ -15,19 +15,9 @@ export default function LandingPage() {
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <Link
               to="/sign-in"
-              className="btn-secondary w-full sm:w-auto text-center hidden sm:inline-flex text-sm sm:text-base px-3 sm:px-4 py-2"
+              className="btn-primary w-full sm:w-auto text-center text-sm sm:text-base px-3 sm:px-4 py-2"
             >
               Entrar
-            </Link>
-            <Link
-              to="/sign-in"
-              className="btn-secondary w-10 h-10 sm:hidden inline-flex items-center justify-center rounded-full"
-              aria-label="Entrar"
-            >
-              <ArrowRight size={18} />
-            </Link>
-            <Link to="/sign-up" className="btn-primary w-full sm:w-auto text-center text-sm sm:text-base px-3 sm:px-4 py-2">
-              Começar grátis
             </Link>
           </div>
         </div>
