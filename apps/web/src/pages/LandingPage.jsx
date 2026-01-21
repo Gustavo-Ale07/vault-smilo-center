@@ -3,42 +3,37 @@ import { Shield, TrendingUp, Lock, Zap, CheckCircle, ArrowRight, Sparkles } from
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#f7f3ee] text-slate-900">
-      <header className="border-b border-slate-200/70 bg-[#f7f3ee]/80 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="border-b border-slate-200 bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-2xl bg-primary-600/10 flex items-center justify-center">
-              <Sparkles className="text-primary-600" size={20} />
+            <div className="h-9 w-9 rounded-xl bg-primary-600/10 flex items-center justify-center">
+              <Sparkles className="text-primary-600" size={18} />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-primary-700">Smilo Vault</h1>
-              <p className="text-xs text-slate-500">Gestão pessoal e cofres seguros</p>
-            </div>
+            <h1 className="text-lg font-bold text-primary-700">Smilo Vault</h1>
           </div>
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <Link
               to="/sign-in"
-              className="btn-secondary w-full sm:w-auto text-center hidden sm:inline-flex"
+              className="btn-secondary w-full sm:w-auto text-center hidden sm:inline-flex text-sm sm:text-base px-3 sm:px-4 py-2"
             >
               Entrar
             </Link>
             <Link
               to="/sign-in"
-              className="btn-secondary w-11 h-11 sm:hidden inline-flex items-center justify-center rounded-full"
+              className="btn-secondary w-10 h-10 sm:hidden inline-flex items-center justify-center rounded-full"
               aria-label="Entrar"
             >
               <ArrowRight size={18} />
             </Link>
-            <Link to="/sign-up" className="btn-primary w-full sm:w-auto text-center">
+            <Link to="/sign-up" className="btn-primary w-full sm:w-auto text-center text-sm sm:text-base px-3 sm:px-4 py-2">
               Começar grátis
             </Link>
           </div>
         </div>
       </header>
 
-      <section className="relative overflow-hidden">
-        <div className="absolute -top-32 -right-24 h-72 w-72 rounded-full bg-primary-200/40 blur-3xl" />
-        <div className="absolute -bottom-24 left-10 h-64 w-64 rounded-full bg-emerald-200/40 blur-3xl" />
+      <section className="bg-white">
         <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div className="space-y-6">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 text-xs font-semibold uppercase tracking-widest text-primary-700 border border-primary-100">
@@ -129,7 +124,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
           <div className="space-y-4">
             <h3 className="text-3xl font-bold">Por que escolher o Smilo Vault?</h3>
@@ -169,7 +164,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="py-8 px-6 border-t border-slate-200 bg-[#f7f3ee]">
+      <footer className="py-8 px-6 border-t border-slate-200 bg-white">
         <div className="max-w-6xl mx-auto text-center text-slate-500">
           <p>2026 Smilo Vault Center. Todos os direitos reservados.</p>
         </div>

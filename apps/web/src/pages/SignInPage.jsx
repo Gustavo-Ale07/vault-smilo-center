@@ -3,11 +3,8 @@ import { Shield, TrendingUp, Lock } from 'lucide-react'
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen bg-[#f7f3ee] relative overflow-hidden">
-      <div className="absolute -top-24 -left-20 h-56 w-56 rounded-full bg-primary-200/40 blur-3xl" />
-      <div className="absolute -bottom-28 right-10 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
-
-      <div className="relative min-h-screen flex items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-10">
         <div className="w-full max-w-5xl grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div className="space-y-6 hidden lg:block">
             <div>
@@ -33,10 +30,24 @@ export default function SignInPage() {
 
           <div className="bg-white/90 border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-8 w-full max-w-md mx-auto">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-slate-900">Entre na sua conta</h2>
-              <p className="text-sm text-slate-500 mt-2">Bem-vindo de volta ao seu painel.</p>
+              <h2 className="text-2xl font-bold text-slate-900">Entrar</h2>
+              <p className="text-sm text-slate-500 mt-2">Acesse sua conta com segurança.</p>
             </div>
-            <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" redirectUrl="/app" />
+            <SignIn
+              routing="path"
+              path="/sign-in"
+              signUpUrl="/sign-up"
+              redirectUrl="/app"
+              appearance={{
+                elements: {
+                  rootBox: 'w-full',
+                  cardBox: 'w-full',
+                  card: 'w-full shadow-none border border-slate-200',
+                  headerTitle: 'text-lg',
+                  headerSubtitle: 'text-sm',
+                },
+              }}
+            />
           </div>
         </div>
       </div>
