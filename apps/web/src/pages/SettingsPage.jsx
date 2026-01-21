@@ -1,7 +1,9 @@
-import { UserProfile } from '@clerk/clerk-react'
+import { UserProfile, useClerk } from '@clerk/clerk-react'
 import Card from '../components/Card'
 
 export default function SettingsPage() {
+  const { openUserProfile } = useClerk()
+
   return (
     <div className="space-y-6">
       <div>
@@ -10,8 +12,22 @@ export default function SettingsPage() {
       </div>
 
       <Card>
-        <div className="overflow-x-auto">
-          <UserProfile />
+        <div className="space-y-4">
+          <div className="md:hidden">
+            <p className="text-sm text-gray-600">
+              Abra o perfil completo para editar dados, emails e conexoes.
+            </p>
+            <button
+              type="button"
+              className="btn-primary mt-4"
+              onClick={() => openUserProfile()}
+            >
+              Abrir perfil
+            </button>
+          </div>
+          <div className="hidden md:block overflow-x-auto">
+            <UserProfile />
+          </div>
         </div>
       </Card>
 
